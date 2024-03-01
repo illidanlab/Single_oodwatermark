@@ -16,6 +16,7 @@ command:
 - --batch_size=512
 - --loss=crossentropy
 #- --norm_inp=True
+#teacher_path should be changed to your pre-trained model (the model you want to inject watermark) accordingly.
 - --teacher_path=target0-ratio0.0_e200-b128-sgd-lr0.1-wd0.0005-cos-holdout0.0-ni1
 - --evaluate_only=True
 - --test_asr=True
@@ -88,7 +89,7 @@ parameters:
       - WRN-16-2
   distill_dataset:
     values:
-      - /localscratch/yushuyan/projects/KD/one_image_animals
+      - /localscratch/yushuyan/projects/KD/one_image_trainset
 #  oodpercent:
 #    values:
 #      - 0.5

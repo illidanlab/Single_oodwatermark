@@ -16,6 +16,7 @@ command:
 #- --lr=0.01
 - --batch_size=512
 - --epochs=20
+#teacher_path should be changed to your pre-trained model (the model you want to inject watermark) accordingly.
 - --teacher_path=target0-ratio0.0_e200-b128-sgd-lr0.1-wd0.0005-cos-holdout0.0-ni1
 #- --teacher_path=target0-ratio0.0_e200-b128-sgd-lr0.1-wd0.0005-cos-holdout0.05-ni1
 - --save_student=True

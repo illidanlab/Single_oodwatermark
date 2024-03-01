@@ -9,6 +9,7 @@ command:
 # - --student=WRN-16-1 
 - --test_asr=True
 - --batch_size=512
+#teacher_path should be changed to your pre-trained model (the model you want to inject watermark) accordingly.
 - --teacher_path=target0-ratio0.0_e200-b128-sgd-lr0.1-wd0.0005-cos-holdout0.05-ni1
 # - --norm_inp=True
 - ${args}
