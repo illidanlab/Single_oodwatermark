@@ -1,0 +1,95 @@
+name: KD distill
+project: ZSKT_backdoor
+command:
+- ${interpreter}
+- ${program}
+- --dataset=CIFAR10
+#- --dataset=gtsrb
+- --teacher=WRN-16-2
+#- --teacher=ResNet18
+# - --student=WRN-16-1 
+- --test_asr=True
+- --train_asr=True
+- --ttest=True
+- --beta=0
+- --cutmix_prob=1
+- --batch_size=512
+- --loss=crossentropy
+#- --norm_inp=True
+- --teacher_path=target0-ratio0.0_e200-b128-sgd-lr0.1-wd0.0005-cos-holdout0.0-ni1
+- --evaluate_only=True
+- --test_asr=True
+- --adversary=ftal
+- --method=finetune
+#- --prune_ratio=0.5
+#- --epoch=10
+- --lr=0.0001
+- --save_student=True
+- --filter=AWP
+- --percent=0.1
+#- --lr=1e-3
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: Eval/test_acc
+parameters:
+  seed:
+    values:
+    - 0
+    # - 1
+    # - 2
+  temp:
+    values:
+      #- 0.8
+      - 0.5
+      #- 0.01
+      #- 0.1
+      #- 1
+  trigger_pattern:
+    values:
+      - trojan_wm
+      #- badnet_grid
+      #- badnet_sq
+      #- blend
+      #- l0_inv
+      #- l2_inv
+      #- sig
+      #- trojan_3x3
+      #- trojan_8x8
+      #- smooth
+      #- cl
+#  prune_ratio:
+#    values:
+#      - 0.2
+#      - 0.5
+  poi_target:
+    values:
+      - 0
+  #awp-beta:
+  #  values:
+  #    - 8.0
+  #    - 6.0
+  #    - 4.0
+  #    - 2.0
+      #- 1.0
+      #- 0
+  percent:
+    values:
+      #- 1.
+      #- 0.2
+      - 0.1
+      #- 0.05
+      #- 0.01
+  student:
+    values:
+      #- ResNet18
+      # - WRN-16-1 
+      - WRN-16-2
+  distill_dataset:
+    values:
+      - /localscratch/yushuyan/projects/KD/one_image_animals
+#  oodpercent:
+#    values:
+#      - 0.5
+program: evaluate.py

@@ -1,0 +1,61 @@
+name: KD distill
+project: ZSKT_backdoor
+command:
+- ${interpreter}
+- ${program}
+- --dataset=CIFAR100
+- --teacher=WRN-16-2
+#- --teacher=ResNet18
+# - --student=WRN-16-1 
+- --test_asr=True
+- --batch_size=512
+- --teacher_path=target0-ratio0.0_e200-b128-sgd-lr0.1-wd0.0005-cos-holdout0.05-ni1
+# - --norm_inp=True
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: Eval/test_acc
+parameters:
+  seed:
+    values:
+    - 0
+    # - 1
+    # - 2
+  temp:
+    values:
+      #- 0.01
+      - 0.5
+      #- 1
+  trigger_pattern:
+    values:
+      - badnet_grid
+      #- badnet_sq
+      #- blend
+      #- l0_inv
+      #- l2_inv
+      #- sig
+      #- trojan_3x3
+      #- trojan_8x8
+      #- trojan_wm
+      #- smooth
+      #- cl
+  poi_target:
+    values:
+      - 0
+  percent:
+    values:
+      - 1.
+      #- 0.2
+      #- 0.1
+      # - 0.05
+      #- 0.01
+  student:
+    values:
+      # - WRN-16-1 
+      - WRN-16-2
+      #- ResNet18
+  distill_dataset:
+    values:
+      - /localscratch/yushuyan/projects/KD/one_image_trainset
+program: get_label_distribution.py

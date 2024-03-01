@@ -1,0 +1,104 @@
+name: KD distill
+project: ZSKT_backdoor
+command:
+- ${interpreter}
+- ${program}
+#- --dataset=CIFAR10
+- --dataset=gtsrb
+#- --teacher=vgg16
+- --teacher=ResNet18
+- --test_asr=True
+- --beta=0
+- --cutmix_prob=1
+#lr for wrn
+- --lr=0.001
+#lr for resnet
+#- --lr=0.01
+- --batch_size=512
+- --epochs=20
+- --teacher_path=target0-ratio0.0_e200-b128-sgd-lr0.1-wd0.0005-cos-holdout0.05-ni1
+#- --teacher_path=target0-ratio0.0_e300-b128-sgd-lr0.01-wd0.0005-cos-holdout0.05-ni1
+- --save_student=True
+- --loss=crossentropy
+- --train_asr=True
+- --initialize_student=True
+- --gamma=1
+- --filter=AWP
+- --awp-gamma=0.1
+#- --optimizer=Adam
+#- --n_shuf_layer=40
+#- --n_shuf_ens=3
+#- --filter=entropy
+#- --scheduler=Multistep
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: Eval/test_acc
+parameters:
+  distill_dataset:
+    values:
+      #- stl10
+
+      - /localscratch/yushuyan/projects/KD/one_image_trainset
+      #- /localscratch/yushuyan/projects/KD/one_image_hubble
+      #- /localscratch/yushuyan/KD/KD/one_image_trainset
+  percent:
+    values:
+      - 1
+  poi_target:
+    values:
+      - 0
+  seed:
+    values:
+      - 0
+  student:
+    values:
+      #- vgg16
+      #- WRN-16-2
+      - ResNet18
+  temp:
+    values:
+      #- 0.1
+      #- 0.3
+      #- 0.5
+      - 1
+      #- 1.5
+      #- 0.8
+  trigger_pattern:
+    values:
+      - blend
+      - trojan_wm
+      - smooth
+      - badnet_grid
+      - badnet_sq
+      - sig
+      - l0_inv
+      - l2_inv
+      - trojan_3x3
+      - trojan_8x8
+      - cl
+  awp-beta:
+    values:
+      - 8.0
+      - 6.0
+      - 4.0
+      - 2.0
+  triggered_ratio:
+    values:
+      #- 0
+      #- 0.01
+      #- 0.05
+      - 0.1
+      #- 0.15
+      #- 0.2
+      #- 0.3
+      #- 0.4
+      #- 0.5
+  select_portion:
+    values:
+      - 1
+      #- 0.8
+      #- 0.5
+      #- 0.2
+program: main.py
