@@ -22,11 +22,7 @@ parameters:
     - 0
     # - 1
     # - 2
-  temp:
-    values:
-      #- 0.01
-      - 0.5
-      #- 1
+
   trigger_pattern:
     values:
       - badnet_grid
