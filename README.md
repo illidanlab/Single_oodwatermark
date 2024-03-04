@@ -44,7 +44,7 @@ For model pre-trained on GTSRB
 wandb sweep run_sweeps/gtsrb_resnet18_poi_one_image_distill_poisontrain.yml
 ```
 
-### Evaluation against watermark removal attacks
+## Evaluation against watermark removal attacks
 An example for evaluating the robustness of the model against watermark removal attacks is:
 ```
 wandb sweep run_sweeps/cifar10_wrn_poi_one_image_evaluate.yml
@@ -59,3 +59,13 @@ The parameters for different watermark removal attacks are shown in this table:
 |Pruning-50\%|finetune|prune|0.5|
 |Model extraction (knockoff)|extraction|knockoff||
 |OoD detection|detection|energy||
+
+## Citation
+```bibtext
+@inproceedings{yu2023safe,
+  title={Safe and Robust Watermark Injection with a Single OoD Image},
+  author={Yu, Shuyang and Hong, Junyuan and Zhang, Haobo and Wang, Haotao and Wang, Zhangyang and Zhou, Jiayu},
+  booktitle={The Twelfth International Conference on Learning Representations},
+  year={2023}
+}
+```
