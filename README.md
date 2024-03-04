@@ -2,6 +2,8 @@
 Code four Our ICLR2024 paper [***Safe and Robust Watermark Injection with a Single OoD Image***](https://openreview.net/pdf?id=PCm1oT8pZI) by Shuyang Yu, Junyuan Hong, Haobo Zhang, Haotao Wang, Zhangyang Wang, Jiayu Zhou.
 
 ## Overview
+![Framework of the proposed safe and robust watermark injection strategy.](oodbackdoor.pdf)
+
 Training a high-performance deep neural network requires large amounts of data
 and computational resources. Protecting the intellectual property (IP) and commercial ownership of a deep model is challenging yet increasingly crucial. A
 major stream of watermarking strategies implants verifiable backdoor triggers by
