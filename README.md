@@ -18,9 +18,10 @@ results demonstrate that the proposed watermarking approach is not only time and
 removal attacks above.
 
 ## Preparation
-1. Pre-train models on CIFAR10, CIFAR100, and GTSRB by yourself or download our pre-trained models from [google drive](https://drive.google.com/drive/folders/1MndxzWLub-wn0gN3HfsVtsj2PZWbemje?usp=sharing).
-2. Specific the root to pre-trained models at [utils/config.py](utils/config.py). 
-3. Sign up [wandb](https://wandb.ai/) and set up by running `wandb login` with your API from the website. Detailed [instruction](https://docs.wandb.ai/quickstart).
+1. You can use Use conda env create -f environment.yml to create a conda env. Major dependencies include pytorch, torchvision, wandb, numpy.
+2. Pre-train models on CIFAR10, CIFAR100, and GTSRB by yourself or download our pre-trained models from [google drive](https://drive.google.com/drive/folders/1MndxzWLub-wn0gN3HfsVtsj2PZWbemje?usp=sharing).
+3. Specific the root to pre-trained models at [utils/config.py](utils/config.py). 
+4. Sign up [wandb](https://wandb.ai/) and set up by running `wandb login` with your API from the website. Detailed [instruction](https://docs.wandb.ai/quickstart).
 
 
 ## Watermark injection 
