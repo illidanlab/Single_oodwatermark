@@ -17,6 +17,12 @@ attacks, including fine-tuning, pruning, and model extraction. Our experimental
 results demonstrate that the proposed watermarking approach is not only time and sample-efficient without training data, but also robust against the watermark
 removal attacks above.
 
+## Preparation
+1. Pre-train models on CIFAR10, CIFAR100, and GTSRB by yourself or download our pre-trained models from [google drive](https://drive.google.com/drive/folders/1MndxzWLub-wn0gN3HfsVtsj2PZWbemje?usp=sharing).
+2. Specific the root to pre-trained models at [utils/config.py](utils/config.py). 
+3. Sign up [wandb](https://wandb.ai/) and set up by running `wandb login` with your API from the website. Detailed [instruction](https://docs.wandb.ai/quickstart).
+
+
 ## Watermark injection 
 ### Generate a surrogate OoD dataset (trigger set) from single OoD image
 Step 1: Surrogate OoD data generation
