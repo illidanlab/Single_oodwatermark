@@ -3,6 +3,7 @@ project: ZSKT_backdoor
 command:
 - ${interpreter}
 - ${program}
+# dataset you used to pre-train your model
 - --dataset=CIFAR100
 - --teacher=WRN-16-2
 #- --teacher=ResNet18
