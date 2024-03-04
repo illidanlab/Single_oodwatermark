@@ -50,6 +50,6 @@ else:
     }
     #BDBlocker_path = '/localscratch/jyhong/projects/BackdoorBlocker/'
     BDBlocker_path = '/localscratch/yushuyan/projects/backdoorblocker/'
-
+# repository for store the pre-trained model which you want to inject watermark
 haotao_PT_model_path = BDBlocker_path + 'results/normal_training/'
 
