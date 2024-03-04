@@ -43,6 +43,10 @@ For model pre-trained on GTSRB
 ```
 wandb sweep run_sweeps/gtsrb_resnet18_poi_one_image_distill_poisontrain.yml
 ```
+We list the trigger patterns we used in this paper as follows:
+
+BadNets with grid (badnet_grid), l0-invisible (l0_inv), smooth (smooth), Trojan Square 3 × 3
+(trojan_3×3), Trojan Square 8×8 (trojan_8×8), and Trojan watermark (trojan_wm).
 
 ## Evaluation against watermark removal attacks
 An example for evaluating the robustness of the model against watermark removal attacks is:
