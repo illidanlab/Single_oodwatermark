@@ -17,7 +17,7 @@ attacks, including fine-tuning, pruning, and model extraction. Our experimental
 results demonstrate that the proposed watermarking approach is not only time and sample-efficient without training data, but also robust against the watermark
 removal attacks above.
 
-## Training 
+## Watermark injection 
 ### Generate a surrogate OoD dataset (trigger set) from single OoD image
 Step 1: Surrogate OoD data generation
 ```
@@ -25,7 +25,7 @@ cd data_generation
 ```
 and then generate the dataset according to data_generation/README.md. Note that --targetpath will be the path to store your trigger set. Our default OoD image is images/ameyoko.jpg.
 
-Step 2: Label this surrogate dataset using a pre-trained model. An example for labeling this data is:
+Step 2: Label this surrogate dataset using a pre-trained model. An example for labeling the data is:
 ```
 wandb sweep run_sweeps/cifar100_wrn_poi_one_image_label.yml
 ```
@@ -42,4 +42,34 @@ wandb sweep run_sweeps/cifar100_wrn_poi_one_image_distill_poisontrain.yml
 For model pre-trained on GTSRB
 ```
 wandb sweep run_sweeps/gtsrb_resnet18_poi_one_image_distill_poisontrain.yml
+```
+We list the trigger patterns we used in this paper as follows:
+
+BadNets with grid (badnet_grid), l0-invisible (l0_inv), smooth (smooth), Trojan Square 3 × 3
+(trojan_3×3), Trojan Square 8×8 (trojan_8×8), and Trojan watermark (trojan_wm).
+
+## Evaluation against watermark removal attacks
+An example for evaluating the robustness of the model against watermark removal attacks is:
+```
+wandb sweep run_sweeps/cifar10_wrn_poi_one_image_evaluate.yml
+```
+The parameters for different watermark removal attacks are shown in this table:
+
+|Attack types|args.method|args.adversary|args.prune_ratio|
+|------|-----|-----|-----|
+|FT-AL|finetune|ftal||
+|FT-LL|finetune|ftll||
+|RT-AL|finetune|rtal||
+|Pruning-50\%|finetune|prune|0.5|
+|Model extraction (knockoff)|extraction|knockoff||
+|OoD detection|detection|energy||
+
+## Citation
+```bibtext
+@inproceedings{yu2023safe,
+  title={Safe and Robust Watermark Injection with a Single OoD Image},
+  author={Yu, Shuyang and Hong, Junyuan and Zhang, Haobo and Wang, Haotao and Wang, Zhangyang and Zhou, Jiayu},
+  booktitle={The Twelfth International Conference on Learning Representations},
+  year={2023}
+}
 ```
