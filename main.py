@@ -314,7 +314,7 @@ def main():
                         help='cutmix probability')
     #weight perturbation
     parser.add_argument('--filter', default=None, type=str,
-                        help='filter with adv or entropy.')
+                        help='AWP if we want to adopt weight peturbation during watermark injection.')
     parser.add_argument('--select_portion', default=0, type=float,
                         help='choose top select_portion samples according to adv/entropy loss')
 
